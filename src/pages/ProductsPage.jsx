@@ -69,7 +69,7 @@ const ProductsPage = () => {
             return <Card key={product.id} data={product} />;
           })}
         </div>
-        <SideBar categoryHandler={categoryHandler} />
+        <SideBar categoryHandler={categoryHandler} query={query} />
       </div>
     </>
   );
