@@ -4,9 +4,17 @@ import { Link } from "react-router-dom";
 import { TbListDetails } from "react-icons/tb";
 import { TbShoppingBagCheck } from "react-icons/tb";
 import { shortenText } from "../helper/helper";
+import { useCart } from "../context/CartContext";
 
 const Card = ({ data }) => {
   const { id, title, image, price } = data;
+
+  const [state, dispatch] = useCart();
+
+  const clickHandler = () => {
+    dispatch({ type: "add", payload: data });
+  };
+
   return (
     <div className="w-[27rem] m-[1rem] p-[2rem] flex flex-col items-start justify-end bg-white border-[.2rem] border-dashed border-[#e2e2e2] rounded-[2rem]">
       <img
@@ -26,7 +34,10 @@ const Card = ({ data }) => {
           <TbListDetails />
         </Link>
         <div className="flex items-center">
-          <button className="bg-[#fe5d42] text-white border-none text-[2.72rem] h-[3.2rem] w-[3.2rem] leading-[3.2rem] p-[.2rem] rounded-[.8rem] cursor-pointer">
+          <button
+            onClick={clickHandler}
+            className="bg-[#fe5d42] text-white border-none text-[2.72rem] h-[3.2rem] w-[3.2rem] leading-[3.2rem] p-[.2rem] rounded-[.8rem] cursor-pointer"
+          >
             <TbShoppingBagCheck />
           </button>
         </div>
